@@ -10,7 +10,11 @@ connectDB();
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: ["https://localhost:5173","https://melodic-mooncake-693776.netlify.app"], // Allow frontend requests
+    methods: "GET,POST,PUT,DELETE",
+    credentials: true
+  }));
 
 app.use('/api/auth', authRoutes);
 app.use('/api/cakes', cakeRoutes);
